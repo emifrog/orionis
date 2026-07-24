@@ -31,5 +31,5 @@ npx serve .
 
 ## À compléter avant mise en ligne
 
-- [ ] Domaine réel dans les balises `canonical` / `og:url` / `og:image` de `index.html` (actuellement `orionis-solutions.fr`)
-- [ ] Placeholders surlignés des pages légales : adresse du siège, SIREN/RCS, n° TVA, coordonnées de l'hébergeur
+- [x] Domaine : `orionis-solutions.fr` (balises `canonical` / `og:url` / `og:image` déjà alignées)
+- [ ] Placeholders surlignés des pages légales : SIREN/RCS et n° TVA (après immatriculation), coordonnées de l'hébergeur
