@@ -1,6 +1,6 @@
 # Orionis Solutions — Site vitrine
 
-Landing page statique du studio [Orionis Solutions](https://orionis-solutions.fr) : éditeur de **Factilo** (facturation électronique conforme réforme 2026), **SécuCitoyen** et **DFCI OPS**.
+Landing page statique d'[Orionis Solutions](https://orionis-solutions.fr), éditeur indépendant de logiciels : **Factilo** (facturation électronique conforme réforme 2026), **SécuCitoyen** et **DFCI OPS**.
 
 ## Structure
 
