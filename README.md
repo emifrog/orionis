@@ -32,4 +32,5 @@ npx serve .
 ## À compléter avant mise en ligne
 
 - [x] Domaine : `orionis-solutions.fr` (balises `canonical` / `og:url` / `og:image` déjà alignées)
-- [ ] Placeholders surlignés des pages légales : SIREN/RCS et n° TVA (après immatriculation), coordonnées de l'hébergeur
+- [x] Hébergeur renseigné dans les pages légales : GitHub, Inc. (GitHub Pages, domaine personnalisé via `CNAME`)
+- [ ] SIREN/RCS et n° de TVA dans les pages légales, dès l'immatriculation
