@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DFCI OPS — Localisation DFCI et cartographie opérationnelle | Orionis Solutions</title>
+<meta name="description" content="DFCI OPS convertit une position GPS en code DFCI, hors ligne et sans compte. Carte IGN, grille DFCI, SITAC, fiches GIFF/RENS/OCT. Application terrain gratuite éditée par Orionis Solutions.">
+<link rel="icon" type="image/png" href="../images/favicon.png">
+<link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+<link rel="canonical" href="https://orionis-solutions.fr/pages/dfci-ops.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Orionis Solutions">
+<meta property="og:title" content="DFCI OPS — Localiser. Analyser. Coordonner.">
+<meta property="og:description" content="L'application terrain de localisation DFCI et de cartographie opérationnelle. Hors ligne intégral, sans compte, position non transmise.">
+<meta property="og:url" content="https://orionis-solutions.fr/pages/dfci-ops.html">
+<meta property="og:image" content="https://orionis-solutions.fr/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://orionis-solutions.fr/images/og-image.png">
+<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<link rel="preload" href="../fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="sky"><canvas id="stars"></canvas></div>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="../index.html">
+      <img src="../images/logo-nobackground.png" alt="Logo Orionis Solutions">
+      <span>Orionis Solutions</span>
+    </a>
+    <div class="nav-right">
+      <nav class="nav-links" id="nav-menu" aria-label="Navigation de la page">
+        <a href="#fonctions">Fonctions</a>
+        <a href="#hors-ligne">Hors réseau</a>
+        <a href="#fiabilite">Fiabilité</a>
+        <a class="btn btn-primary nav-cta" href="https://dfci-ops.vercel.app" target="_blank" rel="noopener">Ouvrir l'application</a>
+      </nav>
+      <button class="theme-toggle" aria-label="Activer le mode clair">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="prod-hero">
+    <img class="prod-logo prod-logo-dark" src="../images/dfci/logo-horizontal-sombre.svg" alt="DFCI OPS" width="1600" height="420">
+    <img class="prod-logo prod-logo-light" src="../images/dfci/logo-horizontal-clair.svg" alt="DFCI OPS" width="1600" height="420">
+    <div class="prod-tag">Localiser. Analyser. Coordonner.</div>
+    <h1>L'application terrain de localisation DFCI et de cartographie opérationnelle</h1>
+    <p class="lead">DFCI OPS réduit le temps entre la localisation, la compréhension de la situation et sa transmission.</p>
+    <div class="status"><i></i>V1 fonctionnelle — prête pour le pilote terrain</div>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://dfci-ops.vercel.app" target="_blank" rel="noopener">Ouvrir l'application</a>
+      <a class="btn btn-ghost" href="mailto:xav.robart@gmail.com?subject=DFCI%20OPS%20%E2%80%94%20d%C3%A9monstration%20ou%20pilote%20terrain">Demander une démonstration</a>
+    </div>
+    <div class="specs">
+      <div class="spec"><b>Sans compte</b><span>Ouverture immédiate, aucune inscription</span></div>
+      <div class="spec"><b>Hors ligne intégral</b><span>Toutes les fonctions, sans couverture mobile</span></div>
+      <div class="spec"><b>Local par défaut</b><span>Position calculée et conservée sur l'appareil</span></div>
+    </div>
+  </div>
+
+  <!-- LE BESOIN -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Le besoin</div>
+      <h2>Sur le terrain, tout commence par une question : « où ? »</h2>
+    </div>
+    <div class="duo">
+      <div class="panel">
+        <div class="eyebrow">Le constat</div>
+        <h3>Une localisation radio exige un code court, fiable et immédiatement lisible.</h3>
+        <ul>
+          <li>La lecture d'une carte papier prend du temps.</li>
+          <li>La couverture mobile est souvent dégradée.</li>
+          <li>Une incertitude GPS mal présentée peut induire en erreur.</li>
+          <li>Les informations se dispersent entre cartes, notes et messageries.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="eyebrow">La réponse DFCI OPS</div>
+        <h3>Un poste cartographique tactique léger, accessible depuis n'importe quel appareil.</h3>
+        <ul>
+          <li>Position GPS convertie localement en code DFCI.</li>
+          <li>Recherche inverse et ouverture de l'itinéraire.</li>
+          <li>SITAC, fiches et missions regroupées au même endroit.</li>
+          <li>Exports et partages déclenchés volontairement.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chain">
+      <div><b>Localiser</b><span>Code DFCI</span></div>
+      <div><b>Rejoindre</b><span>Itinéraire</span></div>
+      <div><b>Représenter</b><span>SITAC</span></div>
+      <div><b>Renseigner</b><span>Fiches</span></div>
+      <div><b>Transmettre</b><span>Export</span></div>
+    </div>
+    <p class="after-note">Chaque étape se fait dans la même application, sur le même fond de carte et avec le même repère DFCI — sans ressaisie, sans changer d'outil.</p>
+  </section>
+
+  <!-- 01 LOCALISER -->
+  <section id="fonctions" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">01 — Localiser et rejoindre</div>
+      <h2>Le code DFCI, immédiatement exploitable</h2>
+      <p>Une interface pensée pour une lecture rapide, la transmission radio et les conditions dégradées.</p>
+    </div>
+    <div class="feature">
+      <div>
+        <img class="shot" src="../images/dfci/ecran-position.png" alt="Écran Position de DFCI OPS : le code DFCI « LD 24 C » affiché en très grand, son épellation radio, la latitude, la longitude, la précision de ± 8 m et l'heure de la mesure." width="417" height="978" loading="lazy">
+        <div class="shot-cap">Écran Position</div>
+      </div>
+      <div>
+        <div class="eyebrow">Position GPS → DFCI</div>
+        <h3 style="font-size:21px;margin-bottom:22px">Un résultat lisible, qualifié et prêt à être annoncé.</h3>
+        <div class="flist">
+          <div><b>Code en très grand</b><span>Carreau 2 km et zone de repérage 1 km lorsque la précision le permet.</span></div>
+          <div><b>Confiance visible</b><span>Précision GPS, âge de la mesure et ambiguïté de limite toujours affichés.</span></div>
+          <div><b>Épellation radio</b><span>Format sans caractères ambigus, copiable ou partageable en un geste.</span></div>
+          <div><b>Recherche inverse</b><span>Saisie tolérante d'un code entendu à la radio ou de coordonnées GPS.</span></div>
+          <div><b>Navigation externe</b><span>Ouverture dans Waze, Google Maps ou Apple Plans.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      <b>Principe de sécurité</b>
+      <p>Un code invalide n'est jamais corrigé silencieusement. Une situation incertaine est signalée comme telle.</p>
+    </div>
+  </section>
+
+  <!-- 02 REPRÉSENTER -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">02 — Comprendre et représenter</div>
+      <h2>De la carte IGN à la situation tactique</h2>
+      <p>La carte reste un support de représentation : la décision appartient au commandement.</p>
+    </div>
+    <div class="shots">
+      <div>
+        <img class="shot" src="../images/dfci/ecran-carte.png" alt="Écran Carte de DFCI OPS : fond cartographique avec la grille DFCI superposée, les carreaux LD 24 et LD 25 étiquetés, et la position marquée avec la mention « LD 24 C · ± 8 m »." width="367" height="860" loading="lazy">
+        <div class="shot-cap">Carte &amp; carroyage</div>
+      </div>
+      <div>
+        <img class="shot" src="../images/dfci/ecran-sitac.png" alt="Écran SITAC de DFCI OPS : un polygone de zone tracé sur la carte, des points TR, PC et EAU positionnés, et les outils Éclosion, Front, Secteur et Point d'eau." width="367" height="860" loading="lazy">
+        <div class="shot-cap">Situation tactique</div>
+      </div>
+    </div>
+    <div class="duo">
+      <div class="panel">
+        <div class="eyebrow">Carte &amp; carroyage</div>
+        <h3>Lire le terrain et rejoindre un point</h3>
+        <ul>
+          <li>Fonds IGN plan et photographie aérienne.</li>
+          <li>Grille DFCI superposée, étiquettes adaptées au zoom.</li>
+          <li>Position et code conservés sur fond neutre si le fond distant tombe.</li>
+          <li>Mode jour et mode nuit.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="eyebrow">SITAC</div>
+        <h3>Construire et mettre à jour la situation</h3>
+        <ul>
+          <li>Points, lignes et polygones opérationnels.</li>
+          <li>Édition des tracés : déplacer, insérer ou supprimer un sommet.</li>
+          <li>Annuler / rétablir et sauvegarde automatique.</li>
+          <li>Export image avec légende, échelle et horodatage.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="after-note">L'interface est dimensionnée pour l'usage avec des gants : zones tactiles larges, sélection tolérante, aucun geste complexe obligatoire.</p>
+  </section>
+
+  <!-- 03 DOCUMENTER -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">03 — Documenter et transmettre</div>
+      <h2>Une intervention, une mission, une trace cohérente</h2>
+      <p>Les données restent locales ; le partage intervient uniquement à la demande de l'utilisateur.</p>
+    </div>
+    <div class="feature rev">
+      <div>
+        <div class="eyebrow">Fiches opérationnelles</div>
+        <h3 style="font-size:21px;margin-bottom:22px">GIFF, RENS, OCT et Transit</h3>
+        <div class="flist">
+          <div><b>Préremplissage maîtrisé</b><span>Mission et position utilisées lorsque les conditions de fiabilité sont réunies.</span></div>
+          <div><b>Brouillons automatiques</b><span>Une saisie interrompue par un verrouillage ou une fermeture n'est pas perdue.</span></div>
+          <div><b>Message structuré</b><span>Chaque fiche se partage sous une forme lisible, signée de l'indicatif local.</span></div>
+          <div><b>Cycle de mission</b><span>Création, ouverture, bascule, archivage et suppression avec purge complète des objets.</span></div>
+        </div>
+      </div>
+      <div>
+        <img class="shot" src="../images/dfci/ecran-fiches.png" alt="Écran Fiches de DFCI OPS : les quatre fiches opérationnelles RENS (reconnaissance initiale), GIFF (engagement du groupe), OCT (ordre complémentaire) et Transit (accueil des moyens), chacune avec un brouillon conservé localement." width="417" height="978" loading="lazy">
+        <div class="shot-cap">Écran Fiches</div>
+      </div>
+    </div>
+    <div class="sec-head" style="margin:52px 0 0">
+      <div class="eyebrow">Exemple de continuité opérationnelle</div>
+    </div>
+    <div class="timeline">
+      <div><b>14:03</b><span>Mission créée</span></div>
+      <div><b>14:05</b><span>Position transmise</span></div>
+      <div><b>14:12</b><span>Première SITAC</span></div>
+      <div><b>14:18</b><span>Fiche RENS</span></div>
+      <div><b>14:22</b><span>Export partagé</span></div>
+    </div>
+  </section>
+
+  <!-- 04 HORS RÉSEAU -->
+  <section id="hors-ligne" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">04 — Fonctionner sans réseau</div>
+      <h2>Le hors-ligne n'est pas un mode dégradé</h2>
+      <p>Après la première ouverture, l'application entière reste disponible sans aucune couverture mobile.</p>
+    </div>
+    <div class="duo">
+      <div class="panel panel-ok">
+        <div class="eyebrow" style="color:#6fd694">Ce qui fonctionne hors réseau</div>
+        <ul>
+          <li>Conversion GPS → code DFCI, sans aucun appel réseau.</li>
+          <li>Recherche inverse d'un code entendu à la radio.</li>
+          <li>SITAC : création, édition, annuler/rétablir, sauvegarde.</li>
+          <li>Fiches, brouillons et cycle de mission complet.</li>
+          <li>Export image de la SITAC et partages natifs.</li>
+        </ul>
+      </div>
+      <div class="panel panel-warn">
+        <div class="eyebrow" style="color:#e0a33c">Ce qui est suspendu</div>
+        <ul>
+          <li>Chargement de nouvelles tuiles IGN non encore consultées.</li>
+          <li>Calcul d'itinéraire par l'application de navigation externe.</li>
+        </ul>
+        <p class="panel-note">Un bandeau signale le mode hors-ligne. Les données locales ne sont jamais bloquées : la carte bascule sur un fond neutre et conserve la grille, la position et les objets.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 FIABILITÉ -->
+  <section id="fiabilite" class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">05 — Fiabilité et confidentialité</div>
+      <h2>La confiance opérationnelle se démontre</h2>
+      <p>DFCI OPS qualifie ses résultats, expose ses limites et privilégie le traitement local.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <strong>339 264</strong>
+        <b>Carreaux contrôlés</b>
+        <span>Le moteur est validé contre l'intégralité de la grille officielle, à chaque version.</span>
+      </div>
+      <div class="stat">
+        <strong>&lt; 0,1 ms</strong>
+        <b>Conversion locale</b>
+        <span>Conversion exécutée sur l'appareil, sans aucun appel réseau (p95 mesuré : 0,017 ms).</span>
+      </div>
+      <div class="stat">
+        <strong>0 compte</strong>
+        <b>Pour démarrer</b>
+        <span>Aucune inscription ni donnée personnelle exigée.</span>
+      </div>
+      <div class="stat">
+        <strong>100 %</strong>
+        <b>Partage volontaire</b>
+        <span>Position, fiche ou export transmis uniquement sur action explicite.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PÉRIMÈTRE -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Périmètre assumé</div>
+      <h2>Ce que DFCI OPS n'est pas</h2>
+    </div>
+    <ul class="notlist">
+      <li>Un outil de prédiction scientifique du comportement du feu.</li>
+      <li>Un remplacement de la reconnaissance terrain ou de l'appréciation du COS.</li>
+      <li>Un système de suivi automatique des personnels.</li>
+      <li>Un dispositif d'alerte ou d'engagement de moyens.</li>
+    </ul>
+    <div class="callout">
+      <b>Principe</b>
+      <p>DFCI OPS aide à se représenter la situation et à la transmettre. La décision reste au commandement.</p>
+    </div>
+  </section>
+
+  <!-- RÔLES -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">06 — Pour toute la chaîne opérationnelle</div>
+      <h2>Un même repère, des usages adaptés au rôle</h2>
+    </div>
+    <div class="roles">
+      <div class="role"><b>Équipier / conducteur</b><span>Se localiser, annoncer son code DFCI et rejoindre un point transmis.</span></div>
+      <div class="role"><b>Chef d'agrès / chef de groupe</b><span>Lire le terrain, poser des points et transmettre une fiche ou une position.</span></div>
+      <div class="role"><b>Chef de colonne / COS</b><span>Construire la SITAC, organiser les secteurs et diffuser un export.</span></div>
+      <div class="role"><b>PC de site / CODIS</b><span>Renseigner les fiches, suivre la situation sur grand écran et archiver les missions.</span></div>
+      <div class="role"><b>Partenaires autorisés</b><span>Partager les mêmes repères cartographiques : CCFF, forestiers et réserves communales.</span></div>
+    </div>
+    <div class="sec-head" style="margin:52px 0 0">
+      <div class="eyebrow">Déploiement simplifié</div>
+    </div>
+    <div class="deploy" style="margin-top:24px">
+      <div><b>PWA</b><span>Installation depuis Safari, Chrome ou Edge, sans store ni MDM.</span></div>
+      <div><b>Multiplateforme</b><span>iOS, Android, Windows, macOS et Linux.</span></div>
+      <div><b>Mises à jour</b><span>Proposées à l'utilisateur, jamais pendant une édition en cours.</span></div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <div class="final wrap">
+    <h2>Testez DFCI OPS sur le terrain.</h2>
+    <p>Aucune inscription requise. Ouvrez l'application, autorisez la position et obtenez immédiatement votre code DFCI.</p>
+    <div class="hero-ctas" style="justify-content:center">
+      <a class="btn btn-primary" href="https://dfci-ops.vercel.app" target="_blank" rel="noopener">Ouvrir l'application</a>
+      <a class="btn btn-ghost" href="mailto:xav.robart@gmail.com?subject=DFCI%20OPS%20%E2%80%94%20d%C3%A9monstration%20ou%20pilote%20terrain">Démonstration et pilote terrain</a>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources">
+    <div>
+      <h4>Sources et attributions</h4>
+      <p>Carroyage DFCI 2 km — jeu de données officiel diffusé sur data.gouv.fr sous Licence Ouverte 2.0 (Etalab) ; version du jeu affichée dans l'application. Fonds cartographiques : © IGN — Géoplateforme. DFCI OPS est édité par Orionis Solutions ; l'éditeur responsable et les mentions d'usage figurent dans l'application et sur chaque export.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">
+          <img src="../images/logo-nobackground.png" alt="Logo Orionis Solutions">
+          <span>Orionis Solutions</span>
+        </div>
+        <p>Éditeur indépendant de logiciels. Des outils simples, utiles et sans superflu — conçus en France.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Produits</h4>
+        <a href="https://factilo.fr" target="_blank" rel="noopener">Factilo</a>
+        <a href="https://secucitoyen.vercel.app" target="_blank" rel="noopener">SécuCitoyen</a>
+        <a href="dfci-ops.html">DFCI OPS</a>
+      </div>
+      <div class="foot-col">
+        <h4>Suivre</h4>
+        <a href="https://www.linkedin.com/company/orionis-solutions" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/orionis_solutions/" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:xav.robart@gmail.com">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Légal</h4>
+        <a href="../mentions-legales.html">Mentions légales</a>
+        <a href="../politique-confidentialite.html">Confidentialité</a>
+        <span>Paris 17ᵉ, France</span>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 Orionis Solutions. Tous droits réservés.</span>
+      <span>Fait avec soin, sans cookies tiers.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Remonter en haut de la page">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="../main.js" defer></script>
+
+</body>
+</html>

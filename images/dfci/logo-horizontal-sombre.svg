@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="420" viewBox="0 0 1600 420">
+<g stroke="#6EA8FF" stroke-width="10.08" stroke-linecap="round" opacity="1"><line x1="150.88" y1="104.8" x2="150.88" y2="335.2"/><line x1="196.95999999999998" y1="104.8" x2="196.95999999999998" y2="335.2"/><line x1="243.04000000000002" y1="104.8" x2="243.04000000000002" y2="335.2"/><line x1="289.12" y1="104.8" x2="289.12" y2="335.2"/><line x1="104.8" y1="150.88" x2="335.2" y2="150.88"/><line x1="104.8" y1="196.95999999999998" x2="335.2" y2="196.95999999999998"/><line x1="104.8" y1="243.04000000000002" x2="335.2" y2="243.04000000000002"/><line x1="104.8" y1="289.12" x2="335.2" y2="289.12"/></g>
+<circle cx="220.0" cy="210.0" r="73.8" fill="none" stroke="#FF5D6C" stroke-width="18.0"/>
+<circle cx="220.0" cy="210.0" r="21.599999999999998" fill="#FFBF47"/>
+<text x="470" y="245" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif"
+      font-size="150" font-weight="800" letter-spacing="6">DFCI OPS</text>
+
+</svg>
